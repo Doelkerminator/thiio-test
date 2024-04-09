@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+    @apply bg-gradient-to-bl from-slate-600 to-slate-900 via-indigo-900;
+}
