@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 main {
-    @apply bg-gradient-to-bl from-slate-600 to-slate-900 via-indigo-900;
+    background-image: url("../images/bg.png");
+    background-size: cover;
+}
+
+#login {
+    @apply bg-gradient-to-r from-slate-600 to-slate-900/60 via-indigo-900/50;
 }
