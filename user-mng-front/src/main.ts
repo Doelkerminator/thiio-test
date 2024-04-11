@@ -11,8 +11,8 @@ import { registerPlugins } from '@/plugins'
 import App from './App.vue'
 
 // Composables
-import { createApp } from 'vue'
-import { router } from './router'
+import { createApp } from 'vue';
+import { router } from './router';
 import "./assets/css/index.css";
 
 const app = createApp(App)

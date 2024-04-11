@@ -6,23 +6,27 @@
                     <div class="text-center text-5xl font-bold text-white p-2">
                         Login
                     </div>
-                    <div class="p-2">
-                        <v-text-field
-                            name="email"
-                            label="E-Mail"
-                            id="email"/>
-                    </div>
-                    <div class="p-2">
-                        <v-text-field
-                            name="password"
-                            label="Password"
-                            id="password"
-                            type="password"
-                        ></v-text-field>
-                    </div>
-                    <div class="p-4 flex justify-center">
-                        <v-btn color="success">Login</v-btn>
-                    </div>
+                    <v-form>
+                        <div class="p-2">
+                            <v-text-field
+                                v-model="loginForm.email"
+                                name="email"
+                                label="E-Mail"
+                                id="email"/>
+                        </div>
+                        <div class="p-2">
+                            <v-text-field
+                                v-model="loginForm.password"
+                                name="password"
+                                label="Password"
+                                id="password"
+                                type="password"
+                            ></v-text-field>
+                        </div>
+                        <div class="p-4 flex justify-center">
+                            <v-btn color="success" :onclick="login">Login</v-btn>
+                        </div>
+                    </v-form>
                     <div class="text-center">
                         Or
                     </div>
@@ -36,7 +40,26 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import axios from 'axios';
+import { server } from '../config';
 import { RouterLink } from 'vue-router';
 
+
+const loginForm = ref({
+    email: "",
+    password: ""
+});
+
+const login = () => {
+    console.log(server);
+    axios.post(`${server}/api/login`, loginForm.value)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((response) => {
+            console.log(response);
+        });
+}
 
 </script>
