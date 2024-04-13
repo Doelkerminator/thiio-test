@@ -7,9 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Admin: typeof import('./src/components/Admin.vue')['default']
+    Dashboard: typeof import('./src/components/Dashboard.vue')['default']
+    Edit: typeof import('./src/components/Edit.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Layout: typeof import('./src/components/Layout.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
+    LoginLayout: typeof import('./src/components/LoginLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SignUp: typeof import('./src/components/SignUp.vue')['default']
   }
 }

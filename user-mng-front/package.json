@@ -8,9 +8,12 @@
   },
   "dependencies": {
     "@mdi/font": "6.2.95",
+    "@vueuse/core": "^10.9.0",
     "autoprefixer": "^10.4.19",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
+    "md5": "^2.3.0",
+    "pinia": "^2.1.7",
     "postcss": "^8.4.38",
     "roboto-fontface": "*",
     "tailwindcss": "^3.4.3",

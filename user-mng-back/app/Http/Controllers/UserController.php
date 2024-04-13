@@ -16,7 +16,8 @@ class UserController extends Controller
             $user = User::firstWhere('email', $credentials['email']);
             $payload = [
                 'email' => $credentials['email'],
-                'id' => $user -> id
+                'id' => $user -> id,
+                'admin' => $user -> isAdmin
             ];
             
             $jwt = $jwtService -> createJwtToken($payload);
@@ -61,14 +62,14 @@ class UserController extends Controller
         if($user) {
             $data = $request -> all();
             if(Hash::check($data['password'], $user -> password)) {
-                if(User::firstWhere('email', $data['email'] ?? '')) {
+                $checkUsr = User::firstWhere('email', $data['email']);
+                if($checkUsr != null && $checkUsr -> id != $id) {
                     return response(['message' => 'Email is already in use!'], 400);
                 }
                 else {
                     $user -> update([
                         'name' => $data['name'] ?? $user -> name,
                         'email' => $data['email'] ?? $user -> email,
-                        'password' => $data['nPassword'] ?? $user -> password
                     ]);
                     return response([], 204);
                 }
@@ -86,5 +87,31 @@ class UserController extends Controller
         $id = $request -> header('id');
         User::find($id) -> delete();
         return response(['message' => 'User deleted!'], 204);
+    }
+
+    public function session(Request $request) {
+        $user = User::find($request -> header('id'));
+        return response(['user' => [
+            'id' => $user -> id,
+            'name' => $user -> name,
+            'email' => $user -> email,
+            'admin' => $user -> isAdmin
+        ]]);
+    }
+
+
+    //? Admin functions
+    public function users(Request $request) {
+        $users = User::all();
+        return response(['users' => $users], 200);
+    }
+
+    public function drop(int $id) {
+        User::find($id)->delete();
+        return response(['message' => 'User deleted!'], 204);
+    }
+
+    public function edit(Request $request, int $id) {
+
     }
 }

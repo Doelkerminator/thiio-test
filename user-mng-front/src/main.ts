@@ -12,13 +12,16 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue';
-import { router } from './router';
+import { createPinia } from 'pinia';
+import router from './router';
 import "./assets/css/index.css";
 
+const pinia = createPinia();
 const app = createApp(App)
 
 registerPlugins(app)
 
 app
+    .use(pinia)
     .use(router)
-    .mount('#app')
+    .mount('#app');

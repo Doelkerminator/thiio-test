@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminCheck;
 use App\Http\Middleware\VerifyJwt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,5 +30,11 @@ Route::controller(UserController::class) -> group(function () {
         Route::delete('/logout', 'logout');
         Route::patch('/update', 'update');
         Route::delete('/delete', 'delete');
+        Route::get('/session', 'session');
+
+        Route::middleware(AdminCheck::class) -> group(function () {
+            Route::get('/admin/users', 'users');
+            Route::delete('/admin/drop/{id}', 'drop');
+        });
     });
 });

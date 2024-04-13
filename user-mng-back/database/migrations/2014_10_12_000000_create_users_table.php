@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->boolean('isAdmin')->default(false);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('jwt')->unique()->nullable();
+            $table->string('jwt', 512)->unique()->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

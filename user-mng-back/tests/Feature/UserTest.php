@@ -177,4 +177,82 @@ class UserTest extends TestCase
         ]);
         $response -> assertStatus(204);
     }
+
+    // ? Frontend verifications
+    
+    /**
+     * Session is valid
+     */
+    public function test_user_checks_if_valid_session_is_valid(): void
+    {
+        $response = $this -> get('/api/session', [
+            'jwt' => JWT
+        ]);
+        $response -> assertStatus(200);
+    }
+
+    /**
+     * Session is invalid
+     */
+    public function test_user_checks_if_invalid_session_is_valid(): void
+    {
+        $response = $this -> get('/api/session');
+        $response -> assertStatus(403);
+    }
+
+
+    // ? Admin tests
+    /**
+     *  A non-admin user tries to get info from all users
+     */
+    public function test_non_admin_user_tries_to_get_users_info(): void{
+        $response = $this -> get('/api/admin/users');
+        $response -> assertStatus(403);
+    }
+
+    /**
+     * An actual admin user gets info from all users
+     */
+    public function test_admin_user_tries_to_get_users_info(): void{
+        $response = $this -> get('/api/admin/users', [
+            'jwt' => JWT
+        ]);
+        $response -> assertStatus(200);
+    }
+
+    /**
+     *  A non admin wants to delete an account
+     */
+    public function test_non_admin_tries_to_delete_user(): void
+    {
+        $response = $this -> delete('/api/admin/user/2');
+        $response -> assertStatus(403);
+    }
+
+    /**
+     * An admin tries to delete an account
+     */
+    public function test_admin_tries_to_delete_user(): void
+    {
+        $response = $this -> delete('/api/admin/user/2');
+        $response -> assertStatus(204);
+    }
+
+    /**
+     * A non admin user tries to update an account
+     */
+    public function test_non_admin_tries_to_update_account(): void
+    {
+        $response = $this -> patch('/api/admin/user/2');
+        $response -> assertStatus(403);
+    }
+
+    /**
+     * An admin user tries to update an account
+     */
+    public function test_admin_tries_to_update_account(): void
+    {
+        $response = $this -> patch('/api/admin/user/2');
+        $response -> assertStatus(204);
+    }
 }
