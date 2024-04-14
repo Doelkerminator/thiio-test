@@ -64,4 +64,7 @@ php artisan test
 
 Having both `user-mng-back` and `user-mng-front` projects running, access the app in your preferred browser (such as Chrome) via the url: http://127.0.0.1:3000.
 
-![Thank you!](https://pngimg.com/d/thank_you_PNG62.png)
+
+And at last, but not least:
+
+### THANKS!
