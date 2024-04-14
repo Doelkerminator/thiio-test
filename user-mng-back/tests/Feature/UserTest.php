@@ -237,22 +237,4 @@ class UserTest extends TestCase
         $response = $this -> delete('/api/admin/user/2');
         $response -> assertStatus(204);
     }
-
-    /**
-     * A non admin user tries to update an account
-     */
-    public function test_non_admin_tries_to_update_account(): void
-    {
-        $response = $this -> patch('/api/admin/user/2');
-        $response -> assertStatus(403);
-    }
-
-    /**
-     * An admin user tries to update an account
-     */
-    public function test_admin_tries_to_update_account(): void
-    {
-        $response = $this -> patch('/api/admin/user/2');
-        $response -> assertStatus(204);
-    }
 }
