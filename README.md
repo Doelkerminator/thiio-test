@@ -64,6 +64,12 @@ php artisan test
 
 Having both `user-mng-back` and `user-mng-front` projects running, access the app in your preferred browser (such as Chrome) via the url: http://127.0.0.1:3000.
 
+The DB is seeded so there exists only one admin account, which can be accessed with the following credentials:
+
+```
+Email: manager@test.com
+Password: test123
+```
 
 And at last, but not least:
 
